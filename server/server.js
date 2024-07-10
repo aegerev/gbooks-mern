@@ -3,15 +3,13 @@ import {ApolloServer} from 'apollo-server-express'
 import path from 'path'
 import {typeDefs, resolvers} from "./schemas"
 import db from './config/connection'
-import {authMiddleware} from './utils/auth';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 const server = new ApolloServer({
     typeDefs,
-    resolvers,
-    context: authMiddleware
+    resolvers
 });
 
 server.applyMiddleware({app});
